@@ -16,6 +16,7 @@ const crearRecordatorio = (recordatorio)=>{
     })
 }
 
+
 const leerRecordatorio = ()=>{
 
     return new Promise ((resolver ,rechazar)=>{

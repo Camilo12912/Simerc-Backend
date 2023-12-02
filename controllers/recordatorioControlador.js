@@ -19,7 +19,6 @@ const getRecordatorio= (req, res)=>{
 
     recordatorioServicio.leerRecordatorio()
     .then(array=> {
-        console.log(array)
         let losrecordatorios=[]
         array.forEach(recordatorio => {
             losrecordatorios.push(new RecordatorioLeerDatosResModel(recordatorio))

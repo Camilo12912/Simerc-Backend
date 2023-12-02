@@ -34,6 +34,7 @@ function AlumnoDatosResModel(alumno){
 }
 
 function AlumnoLeerDatosResModel(alumno){
+    this.idAlumno= alumno.idAlumno
     this.tipoDocumento= alumno.tipoDocumento
     this.documento= alumno.documento
     this.nombre = alumno.nombre
@@ -47,7 +48,7 @@ function AlumnoLeerDatosResModel(alumno){
     this.modalidad= alumno.modalidad
     this.observaciones= alumno.observaciones
 }
-
+ 
 function AlumnoActualizarReqModel(alumno){
     this.nombre = alumno.nombre
     this.apellido = alumno.apellido

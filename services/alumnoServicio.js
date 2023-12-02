@@ -53,6 +53,20 @@ const actualizarAlumno=(id, alumno)=>{
     })
 }
 
+const obtenerEmailsPorCarrera = async (carrera) => {
+    try {
+      // Obtener alumnos por carrera
+      const alumnos = await alumnoRepositorio.obtenerPorCarrera(carrera);
+  
+      // Extraer los correos electrónicos
+      const emails = alumnos.map((alumno) => alumno.email);
+  
+      return emails;
+    } catch (error) {
+      console.error('Error al obtener los emails por carrera:', error);
+      throw error;
+    }
+  };
 
 const eliminarAlumno= (id, username)=>{
     return  new Promise((resolver, rechazar)=>{
@@ -65,4 +79,4 @@ const eliminarAlumno= (id, username)=>{
         resolver(alumnoRepositorio.eliminar(id))
 })
 }
-export default {crearAlumno, leerAlumno, detalleAlumno, actualizarAlumno, eliminarAlumno}
+export default {crearAlumno, leerAlumno, detalleAlumno, actualizarAlumno, eliminarAlumno, obtenerEmailsPorCarrera}

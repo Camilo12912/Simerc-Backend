@@ -18,7 +18,7 @@ const leer= ()=>{
                 console.error('Error al obtener los recordatorios', err)
                 reject(err) // Rechaza la promesa en caso de error
             } else {
-                console.log('recordatorios obtenidos con éxito')
+                // console.log('recordatorios obtenidos con éxito')
                 resolve(results) // Resuelve la promesa con los resultados
             }
         })

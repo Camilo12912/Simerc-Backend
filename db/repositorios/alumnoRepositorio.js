@@ -20,9 +20,8 @@ const leer= ()=>{
                 console.error('Error al obtener los alumnos', err)
                 reject(err) // Rechaza la promesa en caso de error
             } else {
-                console.log('alumnos leidos con éxito')
+                // console.log('alumnos leidos con éxito')
                 resolve(results) // Resuelve la promesa con los resultados
-                console.log(results)
             }
         })
     })
@@ -108,12 +107,47 @@ const eliminar = (id) => {
     })
 }
 
-//     const misClientes= (idUsuario)=>{
-//         const clientes= array.filter(cliente => cliente.usuarioEntity.idUsuario == idUsuario)
-        
-//         return clientes ? clientes : []
+const detallePorDocumento = (documento) => {
+    return new Promise((resolve, reject) => {
+      db.query('SELECT * FROM alumnos WHERE documento = ?', [documento], (err, results) => {
+        if (err) {
+            console.error('Error al obtener el alumno por documento', err);
+            reject(err);
+            }
+            if (results.length === 0) {
+            console.error('No se encontró ningún alumno con ese documento', err);
+            resolve(null); // Puedes resolver con null si no se encuentra ningún alumno
+            } else {
+            console.log('Alumno obtenido por documento con éxito');
+            resolve(results[0]); // Resuelve con el primer resultado (debería ser único por documento)
+            }
+        });
+        });
+    };
     
-// }
+    const obtenerEmailPorDocumento = async (documento) => {
+        try {
+        const alumno = await detallePorDocumento(documento);
+        return alumno ? alumno.email : null;
+        } catch (error) {
+        console.error('Error al obtener el email del alumno por documento:', error);
+        throw error;
+        }
+    };
+
+    const obtenerPorCarrera = (carrera) => {
+        return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM alumnos WHERE carrera = ?', [carrera], (err, results) => {
+            if (err) {
+            console.error('Error al obtener alumnos por carrera', err);
+            reject(err);
+            } else {
+            resolve(results);
+            }
+        });
+        });
+    };
+    
 
 
-export default {crear, leer, detalle, actualizar, eliminar}
+export default {crear, leer, detalle, actualizar, eliminar, detallePorDocumento, obtenerEmailPorDocumento, obtenerPorCarrera}

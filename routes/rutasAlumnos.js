@@ -25,4 +25,14 @@ const routerAlumno= Router()
     passport.authenticate("jwt", {session: false}),
     alumnoControlador.deleteAlumno)
 
+    routerAlumno.get("/email/:documento",
+    passport.authenticate("jwt", { session: false }),
+    alumnoControlador.obtenerEmailPorDocumentoController)
+
+    routerAlumno.get("/carrera/:carrera",
+    passport.authenticate("jwt", { session: false }),
+    alumnoControlador.obtenerEmailsPorCarrera
+    );
+
+
 export default routerAlumno
